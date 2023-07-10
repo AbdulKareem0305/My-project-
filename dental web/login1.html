@@ -1,0 +1,55 @@
+<?php
+
+if (isset($_POST['login_btn'])) {
+  include "connection.php";
+
+  $email=$_POST['email'];
+  $password=$_POST['password'];
+  $query="SELECT * FROM users where email='$email' && password='$password'";
+  $result=mysqli_query($con, $query);
+  $num= mysqli_num_rows($result);
+  if ($num==1) {
+    echo '<script>alert("loggin successfully")</script>';
+     header('location:http://localhost/dental web/index.php');
+  } else {
+    
+    echo '<script>alert("incorrect email or password")</script>';
+     header('location:http://localhost/dental web/all%20subpages/regiter%20page/login.php');
+    
+  }
+  
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+    <form action="" method='post' class="sign-in-form">
+        <h2 class="title">login in</h2>
+        <div class="input-field">
+           <i class="fas fa-user"></i>
+           <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="password"  placeholder="Password" required />
+        </div>
+        <div>
+            <input type="submit" value="Login" name="login_btn"class="btn solid" />    
+        </div>   
+    </form>
+</div>        
+        
+
+      
+    
+</body>
+</html>
